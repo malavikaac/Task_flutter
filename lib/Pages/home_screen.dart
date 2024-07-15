@@ -25,6 +25,13 @@ void initState() {
     final data = context.watch<UserDetailsProvider>();
     final dataList = data.userList;
     return Scaffold(
+    appBar: AppBar(
+          centerTitle: true,
+          title: const Text(
+            "List",
+          ),
+          backgroundColor: const Color.fromARGB(255, 100, 208, 104),
+        ),
       floatingActionButton:FloatingActionButton(
         child: const Icon(Icons.add),
         onPressed: () {
