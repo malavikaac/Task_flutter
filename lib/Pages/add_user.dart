@@ -23,64 +23,75 @@ class _AddUserState extends State<AddUser> {
           ),
           backgroundColor: const Color.fromARGB(255, 100, 208, 104),
         ),
-        body: Padding(
-          padding: const EdgeInsets.all(20.0),
-          child: Column(
-            children: [
-              const SizedBox(
-                height: 20,
+        body: Row(
+          children: [
+            const Expanded(
+              flex: 1,
+              child: Text("")),
+            Expanded(
+              flex: 2,
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  const SizedBox(
+                    height: 20,
+                  ),
+                  TextField(
+                    decoration: const InputDecoration(
+                        border: OutlineInputBorder(), label: Text("Name")),
+                    controller: value.name,
+                  ),
+                  const SizedBox(
+                    height: 20,
+                  ),
+                  TextField(
+                    decoration: const InputDecoration(
+                        border: OutlineInputBorder(), label: Text("Whatsapp")),
+                    controller: value.whatsapp,
+                  ),
+                  const SizedBox(
+                    height: 20,
+                  ),
+                  TextField(
+                    decoration: const InputDecoration(
+                        border: OutlineInputBorder(), label: Text("Address")),
+                    controller: value.address,
+                  ),
+                  const SizedBox(
+                    height: 20,
+                  ),
+                  TextField(
+                    decoration: const InputDecoration(
+                        border: OutlineInputBorder(), label: Text("Requirement")),
+                    controller: value.requirement,
+                  ),
+                  const SizedBox(
+                    height: 20,
+                  ),
+                  ElevatedButton(
+                    onPressed: () => value.userDetailsApi().then((value) {
+                      print(value);
+                      if (value["success"] == true) {
+                         Navigator.push(context, MaterialPageRoute(
+                          builder: (context) =>   const HomeScreen(),
+                        ));
+                        ScaffoldMessenger.of(context).showSnackBar(
+                            SnackBar(content: Text(value["message"])));
+                      } else {
+                       
+                        ScaffoldMessenger.of(context).showSnackBar(
+                            SnackBar(content: Text(value["message"])));
+                      }
+                    }),
+                    child: const Text("Submit"),
+                  ),
+                ],
               ),
-              TextField(
-                decoration: const InputDecoration(
-                    border: OutlineInputBorder(), label: Text("Name")),
-                controller: value.name,
-              ),
-              const SizedBox(
-                height: 20,
-              ),
-              TextField(
-                decoration: const InputDecoration(
-                    border: OutlineInputBorder(), label: Text("Whatsapp")),
-                controller: value.whatsapp,
-              ),
-              const SizedBox(
-                height: 20,
-              ),
-              TextField(
-                decoration: const InputDecoration(
-                    border: OutlineInputBorder(), label: Text("Address")),
-                controller: value.address,
-              ),
-              const SizedBox(
-                height: 20,
-              ),
-              TextField(
-                decoration: const InputDecoration(
-                    border: OutlineInputBorder(), label: Text("Requirement")),
-                controller: value.requirement,
-              ),
-              const SizedBox(
-                height: 20,
-              ),
-              ElevatedButton(
-                onPressed: () => value.userDetailsApi().then((value) {
-                  print(value);
-                  if (value["success"] == true) {
-                     Navigator.push(context, MaterialPageRoute(
-                      builder: (context) =>   const HomeScreen(),
-                    ));
-                    ScaffoldMessenger.of(context).showSnackBar(
-                        SnackBar(content: Text(value["message"])));
-                  } else {
-                   
-                    ScaffoldMessenger.of(context).showSnackBar(
-                        SnackBar(content: Text(value["message"])));
-                  }
-                }),
-                child: const Text("Submit"),
-              ),
-            ],
-          ),
+            ),
+            const Expanded(
+              flex: 1,
+              child: Text("")),
+          ],
         ),
       );
     });
