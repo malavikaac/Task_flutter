@@ -69,6 +69,10 @@ class _AddUserState extends State<AddUser> {
                     height: 20,
                   ),
                   ElevatedButton(
+                    style: ElevatedButton.styleFrom(
+                backgroundColor:const Color.fromARGB(255, 100, 208, 104),
+                padding: const EdgeInsets.symmetric(horizontal: 50, vertical: 20),
+                ),
                     onPressed: () => value.userDetailsApi().then((value) {
                       print(value);
                       if (value["success"] == true) {
@@ -83,7 +87,9 @@ class _AddUserState extends State<AddUser> {
                             SnackBar(content: Text(value["message"])));
                       }
                     }),
-                    child: const Text("Submit"),
+                    child: const Text("Submit" ,style: TextStyle(
+                      color: Colors.white
+                    ),),
                   ),
                 ],
               ),
